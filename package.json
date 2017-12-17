@@ -1,0 +1,30 @@
+{
+  "name": "solid_js_example",
+  "version": "1.0.0",
+  "description": "An example of S.O.L.I.D five principles",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onluiz/SOLID_js_example.git"
+  },
+  "keywords": [
+    "SOLID",
+    "S.O.L.I.D",
+    "Javascript",
+    "JS",
+    "Object Oriented"
+  ],
+  "author": "onluiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onluiz/SOLID_js_example/issues"
+  },
+  "homepage": "https://github.com/onluiz/SOLID_js_example#readme",
+  "dependencies": {
+    "nodemon": "^1.13.3"
+  }
+}
