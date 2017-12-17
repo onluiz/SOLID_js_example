@@ -1,45 +1,18 @@
-const manageShapeInterface = (fn) => ({
-    type: 'manageShapeInterface',
-    calculate: () => fn()
-})
-
 const shapeInterface = (state) => ({
     type: 'shapeInterface',
-    area: () => state.area(state)
-})
-
-const solidShapeInterface = (state) => ({
-    type: 'solidShapeInterface',
+    area: () => state.area(state),
     volume: () => state.volume(state)
 })
-
-const cubo = (length) => {
-    const proto = {
-        length,
-        type   : 'Cubo',
-        area   : (args) => Math.pow(args.length, 2),
-        volume : (args) => Math.pow(args.length, 3)
-    }
-    const basics  = shapeInterface(proto)
-    const complex = solidShapeInterface(proto)
-    const abstraccion = manageShapeInterface(
-        () => basics.area() + complex.volume()
-    )
-    const composite = Object.assign({}, basics, abstraccion)
-    return Object.assign(Object.create(composite), {length})
-}
 
 //circle shape factory function
 const circle = (radius) => {
     const proto = {
-        radius,
         type: 'Circle',
-        area: (args) => Math.PI * Math.pow(args.radius, 2)
+        area () {
+            return Math.PI * Math.pow(shape.length, 2)
+        }
     }
-    const basics = shapeInterface(proto)
-    const abstraccion = manageShapeInterface(() => basics.area())
-    const composite = Object.assign({}, basics, abstraccion)
-    return Object.assign(Object.create(composite), {radius})
+    return Object.assign(Object.create(proto), {radius})
 }
 
 //square shape factory function
