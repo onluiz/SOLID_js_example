@@ -1,3 +1,8 @@
+const shapeInterface = (state) => ({
+    type: 'shapeInterface',
+    area: () => state.area(state)
+})
+
 //circle shape factory function
 const circle = (radius) => {
     const proto = {
@@ -6,7 +11,9 @@ const circle = (radius) => {
             return Math.PI * Math.pow(shape.length, 2)
         }
     }
-    return Object.assign(Object.create(proto), {radius})
+    const basics = shapeInterface(proto)
+    const composite = Object.assign({}, basics)
+    return Object.assign(Object.create(composite), {radius})
 }
 
 //square shape factory function
@@ -17,7 +24,9 @@ const square = (length) => {
             return Math.pow(this.length, 2)
         }
     }
-    return Object.assign(Object.create(proto), {length})
+    const basics = shapeInterface(proto)
+    const composite = Object.assign({}, basics)
+    return Object.assign(Object.create(composite), {length})
 }
 
 const areaCalculator = (s) => {
@@ -25,7 +34,12 @@ const areaCalculator = (s) => {
         sum() {
             const area = []
             for(shape of shapes) {
-                area.push(shape.area())
+                if(Object.getPrototypeOf(shape).type === 'shapeInterface') {
+                    area.push(shape.area())
+                } else {
+                    throw new Error('this is not a shapeInterface object')
+                }
+                
             }
             return area.reduce((v, c) => c += v, 0)
         }

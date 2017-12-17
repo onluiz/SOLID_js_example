@@ -1,10 +1,7 @@
 //circle shape factory function
 const circle = (radius) => {
     const proto = {
-        type: 'Circle',
-        area () {
-            return Math.PI * Math.pow(shape.length, 2)
-        }
+        type: 'Circle'
     }
     return Object.assign(Object.create(proto), {radius})
 }
@@ -12,10 +9,7 @@ const circle = (radius) => {
 //square shape factory function
 const square = (length) => {
     const proto = {
-        type: 'Square',
-        area () {
-            return Math.pow(this.length, 2)
-        }
+        type: 'Square'
     }
     return Object.assign(Object.create(proto), {length})
 }
@@ -25,7 +19,11 @@ const areaCalculator = (s) => {
         sum() {
             const area = []
             for(shape of shapes) {
-                area.push(shape.area())
+                if(shape.type === 'Square') {
+                    area.push(Math.pow(shape.length, 2))
+                } else if (shape.type === 'Circle') {
+                    area.push(Math.PI * Math.pow(shape.length, 2))
+                }
             }
             return area.reduce((v, c) => c += v, 0)
         }
